@@ -1,0 +1,47 @@
+﻿@model IPagedList<Services.Models.ShortJobPosting>
+@using PagedList.Mvc;
+@using PagedList;
+@{
+    ViewBag.Title = "Jobs by region";
+}
+<h2 class="text-white">Job vacancies in @Model.Select(x => x.RegionName).FirstOrDefault() region</h2>
+<div class="card-deck" >
+
+
+    @foreach (var item in Model)
+    {
+        <div class="card col-md-2 bg-faded">
+            <img src="@Url.Content(item.ImagePath)" class="card-img-top img-rounded img-responsive" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Job Title: @item.JobTitle</h5>
+                <p class="card-text">Company: @item.CompanyName</p>
+                <p class="card-text">Posted on: @item.JobPostedDate.ToShortDateString() </p>
+                <p class="card-text">Valid to: @item.JobAvailableToDate.ToShortDateString() </p>
+                <button class="btn btn-primary">@Html.ActionLink("Go to listing", "GetPosting", "JobPosting", new {ID = (item.PostID) },null)</button>
+            </div>
+        </div>
+    }
+
+</div>
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            
+        </div>
+        <div class="col-sm">
+            @Html.PagedListPager(Model, page => Url.Action("GetPostingsByRegion", new { page }),
+             new PagedListRenderOptions()
+             {
+                 LiElementClasses = new List<string> {"btn-primary", "btn"}
+             })
+        </div>
+        <div class="col-sm">
+           
+        </div>
+    </div>
+</div>
+    
+       
+    
+

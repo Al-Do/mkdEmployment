@@ -1,0 +1,68 @@
+﻿@model mkd.Models.CompanyJobPostingHandlingModel
+
+@if (Request.IsAuthenticated)
+{
+    <div class="col-md-12">
+        <div class="row">
+            <div class=" bg-faded col-md-3 rounded ">
+
+                <div class="card bg-faded ">
+
+                    <img src="@Url.Content(Model.currentUser.CompanyLogoPath)" class="card-img-top img-rounded img-responsive " alt="...">
+                    <div class="card-body  ">
+                        @Html.LabelFor(model => model.currentUser.CompanyName, htmlAttributes: new { @class = "control-label " })
+                        <h4 class="card-title ">@Model.currentUser.CompanyName</h4>
+
+                        @Html.LabelFor(model => model.currentUser.ComapanyEmail, htmlAttributes: new { @class = "control-label " })
+
+                        <div>
+                            <p class="card-text">@Model.currentUser.ComapanyEmail</p>
+                        </div>
+                    </div>
+                    @using (Html.BeginForm("Logout", "Company", FormMethod.Post, new { id = "logoutForm" }))
+                    {
+                        <a class="btn-lg btn-danger" href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
+                    }
+
+                </div>
+            </div>
+
+            <div class=" bg-faded col-md-9 img-rounded">
+                <h3>
+                    Your job postings (@Model.UserPostings.Count())
+
+                </h3>
+                @Html.ActionLink("Add job posting", "AddJobPosting", "Company", null, new { @class = " text-white btn-success btn-lg" })
+                <hr />
+
+
+                @foreach (var item in Model.UserPostings)
+                {<div class="card-group">
+                        <div class="card  bg-faded">
+
+                            <div class="card-body">
+                                <h5 class="card-title">Job Title: @item.JobTitle</h5>
+                                <p class="card-text">RegionID: @item.RegionID</p>
+                                <p class="card-text">Posted on: @item.JobPostedDate.ToShortDateString() </p>
+                                <p class="card-text">Valid to: @item.JobAvailableToDate.ToShortDateString() </p>
+                                <p class="card-text">Description: @item.JobDescription </p>
+                                <p class="card-text">Hours per week:  @item.HoursPerWeek </p>
+
+                                <button class="btn btn-primary">@Html.ActionLink("Go to listing", "GetPosting", "JobPosting", new { ID = (item.PostID) }, null)</button>
+
+                                <button class="btn btn-danger">@Html.ActionLink("Remove", "Delete", "Company", new { ID = (item.PostID) }, null)</button>
+                                <button class="btn btn-danger">@Html.ActionLink("Edit","Edit","Company",new { ID=(item.PostID)},null) </button>
+                               
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+
+
+        </div>
+    </div>
+    <br />
+}

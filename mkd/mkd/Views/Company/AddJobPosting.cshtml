@@ -1,0 +1,62 @@
+﻿@model mkd.Models.JobPostingViewModel
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="container bg-faded">
+    <h4>Add Job Posting</h4>
+    <hr />
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.JobAvailableToDate, htmlAttributes: new { @class = "control-label col-md-2 datepicker", @type = "date" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.JobAvailableToDate, new { @type = "date", @class = "form-control datepicker col-md-3", @min = "2019-10-10" })
+            @Html.ValidationMessageFor(model => model.JobAvailableToDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.HoursPerWeek, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.HoursPerWeek, new { htmlAttributes = new { @class = "form-control col-md-2"} })
+            @Html.ValidationMessageFor(model => model.HoursPerWeek, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.JobTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "form-control col-md-5" } })
+            @Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.RegionID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.RegionID, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.RegionID, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+
+    
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.JobDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.JobDescription, new { @class = "form-control ", @rows = 5, @maxlength = "500"  })
+            @Html.ValidationMessageFor(model => model.JobDescription, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+

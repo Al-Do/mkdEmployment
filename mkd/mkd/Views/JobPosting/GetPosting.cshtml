@@ -1,0 +1,93 @@
+﻿@model Services.Models.JobPostingModel
+
+@{
+    ViewBag.Title = "GetPosting";
+}
+
+
+
+<div class=" container bg-faded">
+    <h2>Job posting details</h2>
+    <div class="row ">
+
+
+
+        <hr />
+        <dl class="col-md-4">
+            <img src="@Url.Content(Model.ImagePath)" class=" img-rounded img-responsive " alt="Company Logo">
+            <dt>
+                @Html.DisplayNameFor(model => model.CompanyName)
+            </dt>
+
+            <dd>
+                <h4>  @Html.DisplayFor(model => model.CompanyName)</h4>
+            </dd>
+
+        </dl>
+
+        <dl class="col-md-8">
+            <dt>
+                @Html.DisplayNameFor(model => model.JobTitle)
+            </dt>
+
+            <dd>
+                <h4>  @Html.DisplayFor(model => model.JobTitle) </h4>
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.JobPostedDate)
+            </dt>
+
+            <dd>
+                @Model.JobPostedDate.ToShortDateString()
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.JobAvailableToDate)
+            </dt>
+
+            <dd>
+                @Model.JobAvailableToDate.ToShortDateString()
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.HoursPerWeek)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.HoursPerWeek)
+            </dd>
+
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.JobDescription)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.JobDescription)
+            </dd>
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CompanyEmail)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CompanyEmail)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RegionName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RegionName)
+            </dd>
+
+        </dl>
+
+    </div>
+</div>
+
+
