@@ -41,6 +41,6 @@ namespace Repository
         public System.Guid ImageID { get; set; }
         public virtual ICollection<JobPosting> JobPostings { get; set; }
 
-        // stoi
+        
     }
 }
